@@ -1,0 +1,28 @@
+<%= form_for(@tipo_persona) do |f| %>
+  <% if @tipo_persona.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tipo_persona.errors.count, "error") %> prohibited this tipo_persona from being saved:</h2>
+
+      <ul>
+      <% @tipo_persona.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :tipo_persona %><br>
+    <%= f.text_field :tipo_persona %>
+  </div>
+  
+
+  <%= f.fields_for :caracter_tipo_personas do |builder| %>
+  	<%= render 'caracter_tipo_persona_fields', f: builder %>
+  <% end %>
+  <%= link_to_add_fields "Agrega caracteristica", f, :caracter_tipo_personas %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

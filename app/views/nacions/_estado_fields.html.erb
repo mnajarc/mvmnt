@@ -1,0 +1,11 @@
+<fieldset>
+	<%= f.label :nombre_estado, "Estado" %>
+    <%= f.text_field :nombre_estado %>
+  	<%= f.hidden_field :_destroy %>
+    <%= link_to "Elimina Estado", "#", class: 'remove_fields' %><br />
+	<%= f.fields_for :localidads do |builder| %>
+  		<%= render 'localidad_fields', f: builder %>
+  	<% end %>
+  <%= link_to_add_fields "Agrega localidad", f, :localidads %>
+</fieldset>
+

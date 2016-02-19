@@ -1,0 +1,33 @@
+<%= form_for(@caracter_rol_persona) do |f| %>
+  <% if @caracter_rol_persona.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@caracter_rol_persona.errors.count, "error") %> prohibited this caracter_rol_persona from being saved:</h2>
+
+      <ul>
+      <% @caracter_rol_persona.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :caracteristica %><br>
+    <%= f.text_field :caracteristica %>
+  </div>
+  <div class="field">
+    <%= f.label :requerido %><br>
+    <%= f.check_box :requerido %>
+  </div>
+  <div class="field">
+    <%= f.label :rol_persona_id %><br>
+    <%= f.text_field :rol_persona_id %>
+  </div>
+  <div class="field">
+    <%= f.label :tipo_dato_id %><br>
+    <%= f.text_field :tipo_dato_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

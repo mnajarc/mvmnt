@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre persona:</strong>
+  <%= @persona.nombre_persona %>
+</p>
+
+<p>
+  <strong>Identificador:</strong>
+  <%= @persona.identificador %>
+</p>
+
+<p>
+  <strong>Tipo persona:</strong>
+  <%= @persona.tipo_persona.tipo_persona %>
+</p>
+
+<p>
+  <strong>Rol persona:</strong>
+  <%= @persona.rol_persona.rol_persona %>
+</p>
+
+<%= link_to 'Edit', edit_persona_path(@persona) %> |
+<%= link_to 'Back', personas_path %>

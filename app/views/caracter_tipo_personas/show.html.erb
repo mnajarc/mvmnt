@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Caracteristica:</strong>
+  <%= @caracter_tipo_persona.caracteristica %>
+</p>
+
+<p>
+  <strong>Requerido:</strong>
+  <%= @caracter_tipo_persona.requerido %>
+</p>
+
+<p>
+  <strong>Tipo dato:</strong>
+  <%= @caracter_tipo_persona.tipo_dato.tipo_dato %>
+</p>
+
+<p>
+  <strong>Tipo persona:</strong>
+  <%= @caracter_tipo_persona.tipo_persona.tipo_persona %>
+</p>
+
+<%= link_to 'Edit', edit_caracter_tipo_persona_path(@caracter_tipo_persona) %> |
+<%= link_to 'Back', caracter_tipo_personas_path %>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  caracteristica: MyString
+  requerido: false
+  rol_persona_id: 
+  tipo_dato_id: 
+
+two:
+  caracteristica: MyString
+  requerido: false
+  rol_persona_id: 
+  tipo_dato_id: 

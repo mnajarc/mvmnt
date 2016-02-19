@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Rol Personas</h1>
+<%= form_tag new_rol_persona_path, method: :get do %>
+
+	<%= select_tag :tipo_persona_id, options_from_collection_for_select(TipoPersona.all, :id, :tipo_persona)%>
+	
+	<%= submit_tag "Nuevo Rol Persona", name: nil%>
+
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tipo persona</th>
+      <th>Rol persona</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rol_personas.each do |rol_persona| %>
+      <tr>
+        <td><%= rol_persona.tipo_persona.tipo_persona %></td>
+        <td><%= rol_persona.rol_persona %></td>
+        <td><%= link_to 'Show', rol_persona %></td>
+        <td><%= link_to 'Edit', edit_rol_persona_path(rol_persona) %></td>
+        <td><%= link_to 'Destroy', rol_persona, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

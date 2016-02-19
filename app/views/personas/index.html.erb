@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Personas</h1>
+<%= form_tag(personas_path, :method => "get", id: "search-form") do %>
+	<%= text_field_tag :search, params[:search], placeholder: "Buscar" %>
+	<%= submit_tag "Buscar" %>
+<% end %>
+<% if not @personas.present? %>
+  <p>No se encontraron elementos <%= params[:search] %>.</p>
+<% end %>
+<br />
+<%= form_tag new_persona_path, method: :get do %>
+<strong>Tipo Persona: </strong>
+	<%= select_tag :tipo_persona_id, options_from_collection_for_select(@tipo_personas, :id, :tipo_persona) %></td>
+<strong>Rol  Persona: </strong>
+	<%= select_tag :rol_persona_id, option_groups_from_collection_for_select(@tipo_personas, :rol_personas, :tipo_persona, :id, :rol_persona) %>
+	<%= submit_tag "Nueva Persona", name: nil%>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tipo persona</th>
+      <th>Nombre persona</th>
+      <th>Identificador</th>
+      <th>Rol persona</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @personas.each do |persona| %>
+      <tr>
+        <td><%= persona.tipo_persona.tipo_persona %></td>
+        <td><%= link_to persona.nombre_persona, edit_persona_path(persona) %></td>
+        <td><%= persona.identificador %></td>
+        <td><%= persona.rol_persona.rol_persona %></td>
+        <td><%= link_to 'Show', persona %></td>
+        <td><%= link_to 'Destroy', persona, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

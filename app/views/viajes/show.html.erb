@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Origen:</strong>
+  <%= @viaje.origen %>
+</p>
+
+<p>
+  <strong>Destino:</strong>
+  <%= @viaje.destino %>
+</p>
+
+<p>
+  <strong>Distancia:</strong>
+  <%= @viaje.distancia %>
+</p>
+
+<p>
+  <strong>Combustible:</strong>
+  <%= @viaje.combustible %>
+</p>
+
+<p>
+  <strong>Peaje:</strong>
+  <%= @viaje.Peaje %>
+</p>
+
+<p>
+  <strong>Gasto extra:</strong>
+  <%= @viaje.gasto_extra %>
+</p>
+
+<%= link_to 'Edit', edit_viaje_path(@viaje) %> |
+<%= link_to 'Back', viajes_path %>

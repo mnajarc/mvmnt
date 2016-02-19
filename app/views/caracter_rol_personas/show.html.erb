@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Caracteristica:</strong>
+  <%= @caracter_rol_persona.caracteristica %>
+</p>
+
+<p>
+  <strong>Requerido:</strong>
+  <%= @caracter_rol_persona.requerido %>
+</p>
+
+<p>
+  <strong>Rol persona:</strong>
+  <%= @caracter_rol_persona.rol_persona %>
+</p>
+
+<p>
+  <strong>Tipo dato:</strong>
+  <%= @caracter_rol_persona.tipo_dato %>
+</p>
+
+<%= link_to 'Edit', edit_caracter_rol_persona_path(@caracter_rol_persona) %> |
+<%= link_to 'Back', caracter_rol_personas_path %>

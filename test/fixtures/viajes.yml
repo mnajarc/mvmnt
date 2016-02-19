@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  origen: MyString
+  destino: MyString
+  distancia: 1
+  combustible: 9.99
+  Peaje: 9.99
+  gasto_extra: 9.99
+
+two:
+  origen: MyString
+  destino: MyString
+  distancia: 1
+  combustible: 9.99
+  Peaje: 9.99
+  gasto_extra: 9.99
