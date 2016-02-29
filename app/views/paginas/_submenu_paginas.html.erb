@@ -1,0 +1,8 @@
+<ul>
+	<% paginas.each do |pagina, children| %>
+		<li>
+			<%= link_to_unless_current pagina.nombre, pagina %>
+			<%= render 'submenu_paginas', paginas: children if pagina.present? %>
+		</li>
+	<% end %>
+</ul>

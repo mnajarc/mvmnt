@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :paginas
   resources :localidads
   resources :estados
   resources :nacions do
