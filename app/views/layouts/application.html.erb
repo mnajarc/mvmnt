@@ -1,16 +1,50 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title><Mvmnt><%= content_for?(:title) ? yield(:title) :"Transporte" %></title>
-  	<h1>Sistema de sistema de sistema</h1>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+	<head>
+		<title>
+				<%= content_for?(:title) ? yield(:title) :"Control Transporte" %>
+		</title>
+		<!-- [if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<![endif]-->
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+		<%= csrf_meta_tags %>
+	</head>
+	<body>
+		<div class="navbar navbar-fixed-top navbar-inverse">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+					<a class="brand" href="#">Control de Transporte</a>
+					<div class="nav-collapse">
+						<ul class="nav  navbar-nav">
+							<li><%= link_to "Personas",personas_path %></li>
+							<li><%= link_to "Tipo Personas",tipo_personas_path %></li>
+							<li><%= link_to "Rol Personas",rol_personas_path %></li>
+							<li><%= link_to "acerca" %></li>
+							<li><%= link_to "Ayuda" %></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-9">
+					<%= yield %>
+				</div>
+				<div class="col-md-3">
+					<h2>Acerca de la aplicacion</h2>
+					cualquier cosa que quieras saber acerca de esto
+				</div>
+			</div>
 
-<%= yield %>
+		</div>
 
-</body>
+	</body>
 </html>
-																			

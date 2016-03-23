@@ -22,6 +22,15 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+# gem insertados por Desarrollo
+# ancestry provee de estructuras recursivas para diferentes modulos
+gem 'ancestry'
+# twitter-bootstrap-rails provee de un layout simple de manejar
+gem 'less-rails'
+
+gem 'twitter-bootstrap-rails'
+
+gem 'therubyracer'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -45,4 +54,4 @@ group :development do
   gem 'spring'
 end
 
-gem 'ancestry'
+
