@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Rol Personas</h1>
+<h1>Listado de Rol Personas</h1>
 <%= form_tag new_rol_persona_path, method: :get do %>
 
 	<%= select_tag :tipo_persona_id, options_from_collection_for_select(TipoPersona.all, :id, :tipo_persona)%>
