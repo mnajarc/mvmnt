@@ -1,0 +1,10 @@
+	<% paginas.each do |pagina, children| %>
+		<% if pagina.has_children? then %>
+				<%= drop_down_header pagina.nombre  %>
+				<%= render 'layouts/submenu_barranav', paginas: children if pagina.present? %>
+				<%= drop_down_divider %>
+
+		<% else %>
+			<%= menu_item pagina.nombre, pagina.ruta %>
+		<% end %>
+	<% end %>

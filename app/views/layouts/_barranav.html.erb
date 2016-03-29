@@ -1,0 +1,13 @@
+<%= nav_bar fixed: :top, responsive: true, inverse: true, brand: "Llevamos a to2 la2" do %>
+	<%= menu_group do %>
+		<% @menu_paginas.roots.each do |pagina| %>
+			<% if pagina.has_children? then %>
+				<%= drop_down pagina.nombre do %>
+					<%= render 'layouts/submenu_barranav', paginas: pagina.root.descendants.arrange %>
+				<% end %>
+			<% else %>
+				<%= menu_item pagina.nombre, pagina.ruta %>
+			<% end %>
+		<% end %>
+	<% end %>
+<% end %>

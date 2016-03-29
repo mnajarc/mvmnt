@@ -10,22 +10,10 @@
 		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 		<%= csrf_meta_tags %>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	</head>
 	<body>
-		<%= nav_bar fixed: :top, responsive: true, inverse: true, brand: "Llevamos a to2 la2" do %>
-			<%= menu_group do %>
-				<%= drop_down "Administración" do%>
-					<%= menu_item "Tipos de Datos", tipo_datos_path%>
-					<%= menu_item "Tipos de Personas", tipo_personas_path%>
-					<%= menu_item "Roles de Personas", rol_personas_path%>
-					<%= menu_item "Geografía", nacions_path %>
-				<% end %>
-				<%= menu_item "Personas", personas_path %>
-				<%= menu_item "Faltante" %>
-				<%= menu_item "Sobrante" %>
-			<% end %>
-		<% end %>
-
+		<%= render 'layouts/barranav' %>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-9">

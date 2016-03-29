@@ -69,6 +69,6 @@ class PaginasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pagina_params
-      params.require(:pagina).permit(:nombre, :contenido, :parent_id)
+      params.require(:pagina).permit(:nombre, :contenido, :ruta, :parent_id)
     end
 end
