@@ -1,4 +1,5 @@
 class EstadosController < ApplicationController
+  before_filter :authenticate_usuario!
   before_action :set_estado, only: [:show, :edit, :update, :destroy]
 
   # GET /estados

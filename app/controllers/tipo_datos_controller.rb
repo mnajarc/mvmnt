@@ -1,4 +1,5 @@
 class TipoDatosController < ApplicationController
+  before_filter :authenticate_usuario!
   before_action :set_tipo_dato, only: [:show, :edit, :update, :destroy]
 
   # GET /tipo_datos

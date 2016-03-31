@@ -1,4 +1,5 @@
 class CaracterTipoPersonasController < ApplicationController
+  before_filter :authenticate_usuario!
   before_action :set_caracter_tipo_persona, only: [:show, :edit, :update, :destroy]
 
   # GET /caracter_tipo_personas

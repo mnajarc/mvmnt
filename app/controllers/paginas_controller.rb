@@ -1,4 +1,5 @@
 class PaginasController < ApplicationController
+  before_filter :authenticate_usuario!
   before_action :set_pagina, only: [:show, :edit, :update, :destroy]
 
   # GET /paginas

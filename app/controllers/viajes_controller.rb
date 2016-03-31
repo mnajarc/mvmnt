@@ -1,4 +1,5 @@
 class ViajesController < ApplicationController
+  before_filter :authenticate_usuario!
   before_action :set_viaje, only: [:show, :edit, :update, :destroy]
 
   # GET /viajes

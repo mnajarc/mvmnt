@@ -1,4 +1,5 @@
 class NacionsController < ApplicationController
+  before_filter :authenticate_usuario!
   before_action :set_nacion, only: [:show, :edit, :update, :destroy]
 
   # GET /nacions

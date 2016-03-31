@@ -1,4 +1,5 @@
 class CaracterRolPersonasController < ApplicationController
+  before_filter :authenticate_usuario!
   before_action :set_caracter_rol_persona, only: [:show, :edit, :update, :destroy]
 
   # GET /caracter_rol_personas

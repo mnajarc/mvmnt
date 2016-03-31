@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :usuarios
   resources :paginas
   resources :localidads
   resources :estados
@@ -25,7 +26,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root 'bienvenida#index'
+  root :to => 'bienvenida#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

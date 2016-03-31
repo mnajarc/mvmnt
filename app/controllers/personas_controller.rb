@@ -1,4 +1,5 @@
 class PersonasController < ApplicationController
+  before_filter :authenticate_usuario!
   before_action :set_persona, only: [:show, :edit, :update, :destroy]
 
   # GET /personas

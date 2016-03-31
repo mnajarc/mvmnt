@@ -1,4 +1,5 @@
 class TipoPersonasController < ApplicationController
+  before_filter :authenticate_usuario!
   before_action :set_tipo_persona, only: [:show, :edit, :update, :destroy]
 
   # GET /tipo_personas

@@ -1,13 +1,26 @@
-<%= nav_bar fixed: :top, responsive: true, inverse: true, brand: "Llevamos a to2 la2" do %>
-	<%= menu_group do %>
-		<% @menu_paginas.roots.each do |pagina| %>
-			<% if pagina.has_children? then %>
-				<%= drop_down pagina.nombre do %>
-					<%= render 'layouts/submenu_barranav', paginas: pagina.root.descendants.arrange %>
+<%= nav_bar fixed: :top, responsive: true, inverse: true, brand: "Llevamos a To2 La2" do %>
+	<% if usuario_signed_in? %>
+		<%= menu_group do %>
+			<% @menu_paginas.roots.each do |pagina| %>
+				<% if pagina.has_children? then %>
+					<%= drop_down pagina.nombre do %>
+						<%= render 'layouts/submenu_barranav', paginas: pagina.root.descendants.arrange %>
+					<% end %>
+				<% else %>
+					<%= menu_item pagina.nombre, pagina.ruta %>
 				<% end %>
-			<% else %>
-				<%= menu_item pagina.nombre, pagina.ruta %>
 			<% end %>
+		<% end %>
+	<% end %>
+	
+	<%= menu_group pull: :right do %>
+		<% if usuario_signed_in? %>
+			Firmado como <strong><%=current_usuario.email%></strong>.
+			<%= link_to 'Edita perfil', edit_usuario_registration_path %>
+			<%= link_to 'Salir', destroy_usuario_session_path, method: :delete %>
+		<% else %>
+			<%= link_to 'Registro', new_usuario_registration_path %>
+			<%= link_to 'Entrar', new_usuario_session_path %>
 		<% end %>
 	<% end %>
 <% end %>

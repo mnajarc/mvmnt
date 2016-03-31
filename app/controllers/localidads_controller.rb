@@ -1,4 +1,5 @@
 class LocalidadsController < ApplicationController
+  before_filter :authenticate_usuario!
   before_action :set_localidad, only: [:show, :edit, :update, :destroy]
 
   # GET /localidads
