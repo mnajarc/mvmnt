@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160330203632) do
+ActiveRecord::Schema.define(version: 20160402070602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,18 @@ ActiveRecord::Schema.define(version: 20160330203632) do
 
   add_index "caracter_tipo_personas", ["tipo_dato_id"], name: "index_caracter_tipo_personas_on_tipo_dato_id", using: :btree
   add_index "caracter_tipo_personas", ["tipo_persona_id"], name: "index_caracter_tipo_personas_on_tipo_persona_id", using: :btree
+
+  create_table "caracteristica_tipo_vehiculos", force: :cascade do |t|
+    t.string   "caracteristica",   limit: 48
+    t.boolean  "requerido"
+    t.integer  "tipo_dato_id"
+    t.integer  "tipo_vehiculo_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "caracteristica_tipo_vehiculos", ["tipo_dato_id"], name: "index_caracteristica_tipo_vehiculos_on_tipo_dato_id", using: :btree
+  add_index "caracteristica_tipo_vehiculos", ["tipo_vehiculo_id"], name: "index_caracteristica_tipo_vehiculos_on_tipo_vehiculo_id", using: :btree
 
   create_table "estados", force: :cascade do |t|
     t.string   "nombre_estado"
@@ -120,6 +132,15 @@ ActiveRecord::Schema.define(version: 20160330203632) do
 
   add_index "tipo_personas", ["tipo_persona"], name: "index_tipo_personas_on_tipo_persona", unique: true, using: :btree
 
+  create_table "tipo_vehiculos", force: :cascade do |t|
+    t.string   "clave_tipo_vehiculo", limit: 6
+    t.string   "tipo_vehiculo"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "tipo_vehiculos", ["clave_tipo_vehiculo"], name: "index_tipo_vehiculos_on_clave_tipo_vehiculo", unique: true, using: :btree
+
   create_table "usuarios", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -153,6 +174,8 @@ ActiveRecord::Schema.define(version: 20160330203632) do
   add_foreign_key "caracter_rol_personas", "tipo_datos"
   add_foreign_key "caracter_tipo_personas", "tipo_datos"
   add_foreign_key "caracter_tipo_personas", "tipo_personas"
+  add_foreign_key "caracteristica_tipo_vehiculos", "tipo_datos"
+  add_foreign_key "caracteristica_tipo_vehiculos", "tipo_vehiculos"
   add_foreign_key "estados", "nacions"
   add_foreign_key "localidads", "estados"
   add_foreign_key "personas", "rol_personas"

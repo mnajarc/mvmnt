@@ -1,0 +1,10 @@
+<%= simple_form_for(@tipo_vehiculo) do |f| %>
+    <%= f.input :clave_tipo_vehiculo, :input_html => {:maxlength =>6,:style=> 'width: 110px'} %><br>
+    <%= f.input :tipo_vehiculo %>
+    <%= f.fields_for :caracteristica_tipo_vehiculos do |builder| %>
+  		<%= render 'caracteristica_tipo_vehiculo_fields', f: builder %>
+  	<% end %>
+  	<%= link_to_add_fields "Agrega caracteristica", f, :caracteristica_tipo_vehiculos %>
+  	<br />
+  	<%= f.button :submit %>
+<% end %>
