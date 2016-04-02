@@ -19,6 +19,12 @@ Rails.application.routes.draw do
     resources :caracter_tipo_personas, :tipo_datos
   end
   resources :tipo_datos
+  resources :caracteristica_tipo_vehiculos
+  resources :tipo_vehiculos do
+    resources :caracteristica_tipo_vehiculos, :tipo_datos
+  end
+  
+
   get 'bienvenida/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
