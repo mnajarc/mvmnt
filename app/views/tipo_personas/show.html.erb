@@ -4,6 +4,25 @@
   <strong>Tipo persona:</strong>
   <%= @tipo_persona.tipo_persona %>
 </p>
+<table>
+  <thead>
+    <tr>
+      <th>Caracteristica</th>
+      <th>Requerido</th>
+      <th>Tipo dato</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @caracter_tipo_personas.each do |caracter_tipo_persona| %>
+      <tr>
+        <td><%= caracter_tipo_persona.caracteristica %></td>
+        <td><%= caracter_tipo_persona.requerido? ? 'S' : 'N'%></td>
+        <td><%= caracter_tipo_persona.tipo_dato.tipo_dato %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 
 <%= link_to 'Edit', edit_tipo_persona_path(@tipo_persona) %> |
 <%= link_to 'Back', tipo_personas_path %>

@@ -70,6 +70,6 @@ class NacionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def nacion_params
-      params.require(:nacion).permit(:nombre, estados_attributes: [:id, :nombre_estado, :nacion_id, :_destroy, localidads_attributes: [:id, :nombre_localidad, :estado_id, :_destroy]])
+      params.require(:nacion).permit(:clave_pais, :nombre, estados_attributes: [:id, :clave_estado, :nombre_estado, :nacion_id, :_destroy, localidads_attributes: [:id, :clave_localidad, :nombre_localidad, :estado_id, :_destroy]])
     end
 end

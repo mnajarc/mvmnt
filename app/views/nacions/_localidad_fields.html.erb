@@ -1,8 +1,9 @@
 <fieldset>
-	<%= f.label :nombre_localidad, "Localidad" %>
+    <%= f.label :clave_localidad, "Clave Localidad: " %>
+    <%= f.text_field :clave_localidad %>
     <%= f.text_field :nombre_localidad %>
   	<%= f.hidden_field :_destroy %>
-    <%= link_to "Elimina Localidad", "#", class: 'remove_fields' %>
+    <%= link_to "Elimina Localidad", "#", class: 'remove_field' %>
 </fieldset>
 
 

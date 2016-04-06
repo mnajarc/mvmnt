@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  caracteristica: MyString
+  requerido: false
+  tipo_dato_id: 
+  forma_contacto_id: 
+
+two:
+  caracteristica: MyString
+  requerido: false
+  tipo_dato_id: 
+  forma_contacto_id: 

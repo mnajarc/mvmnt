@@ -1,0 +1,10 @@
+<%= simple_form_for(@forma_contacto) do |f| %>
+    <%= f.input :clave_forma_contacto, :input_html => {:maxlength => 12,:style=> 'width: 220px'} %>
+    <%= f.input :forma_contacto %>
+    <%= f.fields_for :caracteristica_forma_contactos do |builder| %>
+  		<%= render 'layouts/caracteristica_fields', f: builder %>
+  	<% end %>
+  	<%= link_to_add_fields "Agrega caracteristica", f, :caracteristica_forma_contactos %>
+  	<br />
+  	<%= f.button :submit %>
+<% end %>

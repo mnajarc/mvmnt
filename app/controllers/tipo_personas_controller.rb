@@ -1,7 +1,7 @@
 class TipoPersonasController < ApplicationController
   before_filter :authenticate_usuario!
   before_action :set_tipo_persona, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_caracter_tipo_personas, only: [:show]
   # GET /tipo_personas
   # GET /tipo_personas.json
   def index
@@ -68,6 +68,9 @@ class TipoPersonasController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_tipo_persona
       @tipo_persona = TipoPersona.find(params[:id])
+    end
+    def set_caracter_tipo_personas
+      @caracter_tipo_personas=CaracterTipoPersona.where(tipo_persona_id: @tipo_persona.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

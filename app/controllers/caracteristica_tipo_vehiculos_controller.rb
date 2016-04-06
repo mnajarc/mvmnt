@@ -1,5 +1,5 @@
 class CaracteristicaTipoVehiculosController < ApplicationController
-  # before_filter :authenticate_usuario!
+  before_filter :authenticate_usuario!
   before_action :set_caracteristica_tipo_vehiculo, only: [:show, :edit, :update, :destroy]
 
   # GET /caracteristica_tipo_vehiculos

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160402070602) do
+ActiveRecord::Schema.define(version: 20160406044955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,18 @@ ActiveRecord::Schema.define(version: 20160402070602) do
   add_index "caracter_tipo_personas", ["tipo_dato_id"], name: "index_caracter_tipo_personas_on_tipo_dato_id", using: :btree
   add_index "caracter_tipo_personas", ["tipo_persona_id"], name: "index_caracter_tipo_personas_on_tipo_persona_id", using: :btree
 
+  create_table "caracteristica_forma_contactos", force: :cascade do |t|
+    t.string   "caracteristica",    limit: 48
+    t.boolean  "requerido"
+    t.integer  "tipo_dato_id"
+    t.integer  "forma_contacto_id"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "caracteristica_forma_contactos", ["forma_contacto_id"], name: "index_caracteristica_forma_contactos_on_forma_contacto_id", using: :btree
+  add_index "caracteristica_forma_contactos", ["tipo_dato_id"], name: "index_caracteristica_forma_contactos_on_tipo_dato_id", using: :btree
+
   create_table "caracteristica_tipo_vehiculos", force: :cascade do |t|
     t.string   "caracteristica",   limit: 48
     t.boolean  "requerido"
@@ -56,26 +68,43 @@ ActiveRecord::Schema.define(version: 20160402070602) do
   create_table "estados", force: :cascade do |t|
     t.string   "nombre_estado"
     t.integer  "nacion_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "clave_estado",  limit: 3
   end
 
+  add_index "estados", ["nacion_id", "clave_estado"], name: "index_estados_on_nacion_id_and_clave_estado", unique: true, using: :btree
   add_index "estados", ["nacion_id"], name: "index_estados_on_nacion_id", using: :btree
+
+  create_table "forma_contactos", force: :cascade do |t|
+    t.string   "clave_forma_contacto", limit: 12
+    t.string   "forma_contacto",       limit: 48
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "forma_contactos", ["clave_forma_contacto"], name: "index_forma_contactos_on_clave_forma_contacto", unique: true, using: :btree
+  add_index "forma_contactos", ["forma_contacto"], name: "index_forma_contactos_on_forma_contacto", unique: true, using: :btree
 
   create_table "localidads", force: :cascade do |t|
     t.string   "nombre_localidad"
     t.integer  "estado_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "clave_localidad",  limit: 3
   end
 
+  add_index "localidads", ["estado_id", "clave_localidad"], name: "index_localidads_on_estado_id_and_clave_localidad", unique: true, using: :btree
   add_index "localidads", ["estado_id"], name: "index_localidads_on_estado_id", using: :btree
 
   create_table "nacions", force: :cascade do |t|
     t.string   "nombre"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "clave_pais", limit: 3
   end
+
+  add_index "nacions", ["clave_pais"], name: "index_nacions_on_clave_pais", unique: true, using: :btree
 
   create_table "paginas", force: :cascade do |t|
     t.string   "nombre"
@@ -174,6 +203,8 @@ ActiveRecord::Schema.define(version: 20160402070602) do
   add_foreign_key "caracter_rol_personas", "tipo_datos"
   add_foreign_key "caracter_tipo_personas", "tipo_datos"
   add_foreign_key "caracter_tipo_personas", "tipo_personas"
+  add_foreign_key "caracteristica_forma_contactos", "forma_contactos"
+  add_foreign_key "caracteristica_forma_contactos", "tipo_datos"
   add_foreign_key "caracteristica_tipo_vehiculos", "tipo_datos"
   add_foreign_key "caracteristica_tipo_vehiculos", "tipo_vehiculos"
   add_foreign_key "estados", "nacions"

@@ -1,27 +1,9 @@
-<%= form_for(@nacion) do |f| %>
-  <% if @nacion.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@nacion.errors.count, "error") %> prohibited this nacion from being saved:</h2>
-
-      <ul>
-      <% @nacion.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :nombre %><br>
-    <%= f.text_field :nombre %>
-  </div>
-
+<%= simple_form_for(@nacion) do |f| %>
+    <%= f.input :clave_pais %>
+    <%= f.input :nombre %>
   <%= f.fields_for :estados do |builder| %>
   	<%= render 'estado_fields', f: builder %>
   <% end %>
-  <%= link_to_add_fields "Agrega estado", f, :estados %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= link_to_add_field "Agrega estado", f, :estados %>
+    <%= f.button :submit %>
 <% end %>

@@ -23,7 +23,12 @@ Rails.application.routes.draw do
   resources :tipo_vehiculos do
     resources :caracteristica_tipo_vehiculos, :tipo_datos
   end
-  
+
+  resources :caracteristica_forma_contactos
+  resources :forma_contactos do
+    resources :caracteristica_forma_contactos, :tipo_datos
+  end
+
 
   get 'bienvenida/index'
 
