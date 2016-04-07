@@ -1,3 +1,5 @@
+<%- model_class = Persona -%>
+
 <p id="notice"><%= notice %></p>
 
 <h1>Listado de Personas</h1>
@@ -14,32 +16,36 @@
 	<%= select_tag :tipo_persona_id, options_from_collection_for_select(@tipo_personas, :id, :tipo_persona) %></td>
 <strong>Rol  Persona: </strong>
 	<%= select_tag :rol_persona_id, option_groups_from_collection_for_select(@tipo_personas, :rol_personas, :tipo_persona, :id, :rol_persona) %>
-	<%= submit_tag "Nueva Persona", name: nil%>
+	<%= submit_tag "Nueva Persona", name: nil , class: "btn btn-primary" %>
 <% end %>
 
-<table>
+
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Tipo persona</th>
-      <th>Nombre persona</th>
-      <th>Identificador</th>
-      <th>Rol persona</th>
-      <th colspan="4"></th>
+      <th><%= model_class.human_attribute_name(:nombre_persona) %></th>
+      <th><%= model_class.human_attribute_name(:identificador) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @personas.each do |persona| %>
       <tr>
-        <td><%= persona.tipo_persona.tipo_persona %></td>
-        <td><%= link_to persona.nombre_persona, edit_persona_path(persona) %></td>
+        <td><%= link_to persona.nombre_persona, persona_path(persona) %></td>
         <td><%= persona.identificador %></td>
-        <td><%= persona.rol_persona.rol_persona %></td>
-        <td><%= link_to 'Show', persona %></td>
-        <td><%= link_to 'Destroy', persona, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_persona_path(persona), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      persona_path(persona),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
