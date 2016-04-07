@@ -1,52 +1,37 @@
-<%= form_for(@persona) do |f| %>
-  <% if @persona.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@persona.errors.count, "error") %> prohibited this persona from being saved:</h2>
+<%= simple_form_for(@persona) do |f| %>
+    <%= f.hidden_field :tipo_persona_id %>
+    <%= f.hidden_field :rol_persona_id %>
+    <%= f.input :nombre_persona %>
+    <%= f.input :identificador %>
+    <h4>Caracteristicas Tipo Persona :  <%= @persona.tipo_persona.tipo_persona %></h4>
+    <table class="table table-striped">
+        <tbody>
+            <%= f.simple_fields_for :tipo_caracteres, OpenStruct.new(@persona.tipo_caracteres) do |builder| %>
+                    <% @persona.tipo_persona.caracter_tipo_personas.each do |field| %>
+                    <% tipodato=TipoDato.find(field.tipo_dato_id) %>
+                    <tr>
+                    <%= render "personas/fields/#{tipodato.dataprot}", field: field, f: builder %>
+                    </tr>
+                <% end %>
+            <% end %>
+        </tbody>
+    </table>
+    <h4>Caracteristicas Rol Persona :  <%= @persona.rol_persona.rol_persona %></h4>
+    <table class="table table-striped">
+        <tbody>
+            <%= f.simple_fields_for :rol_caracteres, OpenStruct.new(@persona.rol_caracteres) do |builder| %>
+                <% @persona.rol_persona.caracter_rol_personas.each do |field| %>
+                    <% tipodato=TipoDato.find(field.tipo_dato_id) %>
+                    <tr>
+                        <%= render "personas/fields/#{tipodato.dataprot}", field: field, f: builder %>
+                    </tr>
+            
+                <% end %>
+            <% end %>
+        </tbody>
+    </table>
 
-      <ul>
-      <% @persona.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  
-
-  <%= f.hidden_field :tipo_persona_id %>
-  <%= f.hidden_field :rol_persona_id %>
-
-  <div class="field">
-    <%= f.label :nombre_persona %><br>
-    <%= f.text_field :nombre_persona %>
-  </div>
-
-  <div class="field">
-    <%= f.label :identificador %><br>
-    <%= f.text_field :identificador %>
-  </div>
-  
-  <h4>Caracteristicas Tipo Persona :  <%= @persona.tipo_persona.tipo_persona %></h4>
-  
-  <%= f.fields_for :tipo_caracteres, OpenStruct.new(@persona.tipo_caracteres) do |builder| %>
-  	<% @persona.tipo_persona.caracter_tipo_personas.each do |field| %>
-		<% tipodato=TipoDato.find(field.tipo_dato_id) %>
-  		<%= render "personas/fields/#{tipodato.dataprot}", field: field, f: builder %>
-  	<% end %>
-  <% end %>
-  
-  <h4>Caracteristicas Rol Persona :  <%= @persona.rol_persona.rol_persona %></h4>
-
-  <%= f.fields_for :rol_caracteres, OpenStruct.new(@persona.rol_caracteres) do |builder| %>
-  	<% @persona.rol_persona.caracter_rol_personas.each do |field| %>
-		<% tipodato=TipoDato.find(field.tipo_dato_id) %>
-  		<%= render "personas/fields/#{tipodato.dataprot}", field: field, f: builder %>
-  	<% end %>
-  <% end %>
-
-  
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.button :submit %>
 
 <% end %>
+
