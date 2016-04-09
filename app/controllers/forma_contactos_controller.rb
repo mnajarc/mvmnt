@@ -1,6 +1,7 @@
 class FormaContactosController < ApplicationController
   before_filter :authenticate_usuario!
   before_action :set_forma_contacto, only: [:show, :edit, :update, :destroy]
+  before_action :set_caracteristica_forma_contactos, only: [:show]
 
   # GET /forma_contactos
   # GET /forma_contactos.json
@@ -62,12 +63,17 @@ class FormaContactosController < ApplicationController
       format.html { redirect_to forma_contactos_url, notice: 'Forma Contacto was successfully destroyed.' }
       format.json { head :no_content }
     end
+
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_forma_contacto
       @forma_contacto = FormaContacto.find(params[:id])
+    end
+
+    def set_caracteristica_forma_contactos
+      @caracteristica_forma_contactos=CaracteristicaFormaContacto.where(forma_contacto_id: @forma_contacto.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

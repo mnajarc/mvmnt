@@ -2,14 +2,31 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
-
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:clave_forma_contacto) %>:</strong></dt>
   <dd><%= @forma_contacto.clave_forma_contacto %></dd>
   <dt><strong><%= model_class.human_attribute_name(:forma_contacto) %>:</strong></dt>
   <dd><%= @forma_contacto.forma_contacto %></dd>
 </dl>
-
+<table>
+  <thead>
+    <tr>
+      <th>Caracteristica</th>
+      <th>Requerido</th>
+      <th>Tipo dato</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @caracteristica_forma_contactos.each do |caracteristica_forma_contacto| %>
+      <tr>
+        <td><%= caracteristica_forma_contacto.caracteristica %></td>
+        <td><%= caracteristica_forma_contacto.requerido? ? 'S' : 'N'%></td>
+        <td><%= caracteristica_forma_contacto.tipo_dato.tipo_dato %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br />
 <%= link_to t('.back', :default => t("helpers.links.back")),
               forma_contactos_path, :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),

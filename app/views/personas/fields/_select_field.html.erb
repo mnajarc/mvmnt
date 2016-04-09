@@ -1,0 +1,7 @@
+<div class="field">
+    <% splstr = selstr={} %>
+    <% splstr = field.caracteristica.split(';') %>
+    <% selstr = splstr[1].split(',') %>
+    <td><%= f.label splstr[0] %></td>
+    <td><%= f.select field.caracteristica, selstr, {Multiple: true}%></td>
+</div>
