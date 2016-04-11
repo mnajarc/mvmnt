@@ -1,9 +1,11 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Tipo persona:</strong>
-  <%= @tipo_persona.tipo_persona %>
-</p>
+<%- model_class = TipoPersona -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:tipo_persona) %>:</strong></dt>
+  <dd><%= @tipo_persona.tipo_persona %></dd>
+</dl>
 <table>
   <thead>
     <tr>
@@ -18,11 +20,19 @@
         <td><%= caracter_tipo_persona.caracteristica %></td>
         <td><%= caracter_tipo_persona.requerido? ? 'S' : 'N'%></td>
         <td><%= caracter_tipo_persona.tipo_dato.tipo_dato %></td>
+
       </tr>
     <% end %>
   </tbody>
 </table>
+<br />
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              tipo_personas_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_tipo_persona_path(@tipo_persona), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              tipo_persona_path(@tipo_persona),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
 
-
-<%= link_to 'Edit', edit_tipo_persona_path(@tipo_persona) %> |
-<%= link_to 'Back', tipo_personas_path %>

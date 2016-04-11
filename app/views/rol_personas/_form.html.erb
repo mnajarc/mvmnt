@@ -1,24 +1,9 @@
-<%= form_for(@rol_persona) do |f| %>
-  <% if @rol_persona.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@rol_persona.errors.count, "error") %> prohibited this rol_persona from being saved:</h2>
-
-      <ul>
-      <% @rol_persona.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <%= f.hidden_field :tipo_persona_id %>
-  <h2><%= @tipo_persona.tipo_persona %></h2>
-
-  <div class="field">
-    <%= f.label :rol_persona %><br>
-    <%= f.text_field :rol_persona %>
-  </div>
-  <%= f.fields_for :caracter_rol_personas do |builder| %>
-  	<%= render 'caracter_rol_persona_fields', f: builder %>
+<%= simple_form_for(@rol_persona) do |f| %>
+<%= f.hidden_field :tipo_persona_id %>
+<h2><%= @tipo_persona.tipo_persona %></h2>
+    <%= f.input :rol_persona %><br>
+  <%= f.simple_fields_for :caracter_rol_personas do |builder| %>
+  	<%= render 'layouts/caracteristica_fields', f: builder %>
   <% end %>
   <%= link_to_add_fields "Agrega caracteristica", f, :caracter_rol_personas %>
 

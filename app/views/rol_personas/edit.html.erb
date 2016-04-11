@@ -1,6 +1,5 @@
-<h1>Edición de Rol Persona</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @rol_persona %> |
-<%= link_to 'Back', rol_personas_path %>
+<%- model_class = RolPersona -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edita %{model}'], :model => model_class.model_name.human.titleize %></h1>
+</div>
+<%= render :partial => 'form' %>

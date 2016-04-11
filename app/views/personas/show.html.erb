@@ -14,13 +14,13 @@
     <%= fields_for :tipo_caracteres, OpenStruct.new(@persona.tipo_caracteres) do |builder| %>
         <% @persona.tipo_persona.caracter_tipo_personas.each do |field| %>
             <% tipodato=TipoDato.find(field.tipo_dato_id) %>
-            <%= render "personas/disp_fields/#{tipodato.dataprot}", field: field, f: builder %>
+            <%= render "layouts/disp_fields/#{tipodato.dataprot}", field: field, f: builder %>
         <% end %>
     <% end %>
     <%= fields_for :rol_caracteres, OpenStruct.new(@persona.rol_caracteres) do |builder| %>
         <% @persona.rol_persona.caracter_rol_personas.each do |field| %>
             <% tipodato=TipoDato.find(field.tipo_dato_id) %>
-            <%= render "personas/disp_fields/#{tipodato.dataprot}", field: field, f: builder %>
+            <%= render "layouts/disp_fields/#{tipodato.dataprot}", field: field, f: builder %>
         <% end %>
     <% end %>
 

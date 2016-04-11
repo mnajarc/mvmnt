@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :usuarios
+  resources :tipo_datos
   resources :paginas
   resources :localidads
   resources :estados
@@ -8,17 +9,20 @@ Rails.application.routes.draw do
       resources :localidads
     end
   end
-  resources :viajes
+  
   resources :caracter_rol_personas
-  resources :rol_personas
-  resources :caracter_tipo_personas
-  resources :personas do
-    resources :tipo_personas, :rol_personas
+  resources :rol_personas do
+    resources :caracter_rol_personas, :tipo_datos
   end
+  
+  resources :caracter_tipo_personas
   resources :tipo_personas do
     resources :caracter_tipo_personas, :tipo_datos
   end
-  resources :tipo_datos
+
+  resources :personas do
+    resources :tipo_personas, :rol_personas
+  end
   resources :caracteristica_tipo_vehiculos
   resources :tipo_vehiculos do
     resources :caracteristica_tipo_vehiculos, :tipo_datos
@@ -29,6 +33,7 @@ Rails.application.routes.draw do
     resources :caracteristica_forma_contactos, :tipo_datos
   end
 
+  resources :viajes
 
   get 'bienvenida/index'
 

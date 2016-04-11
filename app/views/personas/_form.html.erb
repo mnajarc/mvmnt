@@ -10,7 +10,7 @@
                     <% @persona.tipo_persona.caracter_tipo_personas.each do |field| %>
                     <% tipodato=TipoDato.find(field.tipo_dato_id) %>
                     <tr>
-                    <%= render "personas/fields/#{tipodato.dataprot}", field: field, f: builder %>
+                    <%= render "layouts/fields/#{tipodato.dataprot}", field: field, f: builder %>
                     </tr>
                 <% end %>
             <% end %>
@@ -23,7 +23,7 @@
                 <% @persona.rol_persona.caracter_rol_personas.each do |field| %>
                     <% tipodato=TipoDato.find(field.tipo_dato_id) %>
                     <tr>
-                        <%= render "personas/fields/#{tipodato.dataprot}", field: field, f: builder %>
+                        <%= render "layouts/fields/#{tipodato.dataprot}", field: field, f: builder %>
                     </tr>
             
                 <% end %>
