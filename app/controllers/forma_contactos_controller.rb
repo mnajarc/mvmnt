@@ -78,7 +78,6 @@ class FormaContactosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def forma_contacto_params
-      #params.require(:forma_contacto).permit(:forma_contacto, caracter_forma_contactos_attributes: [:id, :caracteristica, :requerido, :tipo_dato_id, :forma_contacto_id, :_destroy])
       params.require(:forma_contacto).permit(:clave_forma_contacto, :forma_contacto, caracteristica_forma_contactos_attributes: [:id, :caracteristica, :requerido, :tipo_dato_id, :forma_contacto_id, :_destroy] )
     end
 

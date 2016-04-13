@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  clave_marca_vehiculo: MyString
+  marca_vehiculo: MyString
+
+two:
+  clave_marca_vehiculo: MyString
+  marca_vehiculo: MyString

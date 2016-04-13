@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  clave_modelo_vehiculo: MyString
+  modelo_vehiculo: MyString
+  marca_vehiculo_id: 
+  tipo_vehiculo_id: 
+
+two:
+  clave_modelo_vehiculo: MyString
+  modelo_vehiculo: MyString
+  marca_vehiculo_id: 
+  tipo_vehiculo_id: 

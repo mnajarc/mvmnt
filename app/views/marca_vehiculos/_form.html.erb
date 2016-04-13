@@ -1,0 +1,11 @@
+<%= simple_form_for(@marca_vehiculo) do |f| %>
+    <%= f.input :clave_marca_vehiculo, :input_html => {:maxlength => 12,:style=> 'width: 220px'} %>
+    <%= f.input :marca_vehiculo %>
+    <%= f.simple_fields_for :modelo_vehiculos do |builder| %>
+  		<%= render 'modelo_vehiculo_fields', f: builder %>
+  	<% end %>
+
+  	<%= link_to_add_field "Agrega Modelo", f, :modelo_vehiculos %>
+  	<br />
+  	<%= f.button :submit %>
+<% end %>

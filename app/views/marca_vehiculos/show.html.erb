@@ -1,0 +1,38 @@
+<%- model_class = MarcaVehiculo -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:clave_marca_vehiculo) %>:</strong></dt>
+  <dd><%= @marca_vehiculo.clave_marca_vehiculo %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:marca_vehiculo) %>:</strong></dt>
+  <dd><%= @marca_vehiculo.marca_vehiculo %></dd>
+</dl>
+<table>
+  <thead>
+    <tr>
+      <th>Clave Modelo</th>
+      <th>Modelo</th>
+      <th>Tipo Vehiculo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @modelo_vehiculos.each do |modelo_vehiculo| %>
+      <tr>
+        <td><%= modelo_vehiculo.clave_modelo_vehiculo%></td>
+        <td><%= modelo_vehiculo.modelo_vehiculo %></td>
+        <td><%= modelo_vehiculo.tipo_vehiculo.tipo_vehiculo %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br />
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              marca_vehiculos_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_marca_vehiculo_path(@marca_vehiculo), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              marca_vehiculo_path(@marca_vehiculo),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

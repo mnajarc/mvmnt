@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160406044955) do
+ActiveRecord::Schema.define(version: 20160412155622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,28 @@ ActiveRecord::Schema.define(version: 20160406044955) do
 
   add_index "localidads", ["estado_id", "clave_localidad"], name: "index_localidads_on_estado_id_and_clave_localidad", unique: true, using: :btree
   add_index "localidads", ["estado_id"], name: "index_localidads_on_estado_id", using: :btree
+
+  create_table "marca_vehiculos", force: :cascade do |t|
+    t.string   "clave_marca_vehiculo", limit: 20
+    t.string   "marca_vehiculo"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "marca_vehiculos", ["clave_marca_vehiculo"], name: "index_marca_vehiculos_on_clave_marca_vehiculo", unique: true, using: :btree
+
+  create_table "modelo_vehiculos", force: :cascade do |t|
+    t.string   "clave_modelo_vehiculo", limit: 20
+    t.string   "modelo_vehiculo"
+    t.integer  "marca_vehiculo_id"
+    t.integer  "tipo_vehiculo_id"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "modelo_vehiculos", ["clave_modelo_vehiculo"], name: "index_modelo_vehiculos_on_clave_modelo_vehiculo", unique: true, using: :btree
+  add_index "modelo_vehiculos", ["marca_vehiculo_id"], name: "index_modelo_vehiculos_on_marca_vehiculo_id", using: :btree
+  add_index "modelo_vehiculos", ["tipo_vehiculo_id"], name: "index_modelo_vehiculos_on_tipo_vehiculo_id", using: :btree
 
   create_table "nacions", force: :cascade do |t|
     t.string   "nombre"
@@ -209,6 +231,8 @@ ActiveRecord::Schema.define(version: 20160406044955) do
   add_foreign_key "caracteristica_tipo_vehiculos", "tipo_vehiculos"
   add_foreign_key "estados", "nacions"
   add_foreign_key "localidads", "estados"
+  add_foreign_key "modelo_vehiculos", "marca_vehiculos"
+  add_foreign_key "modelo_vehiculos", "tipo_vehiculos"
   add_foreign_key "personas", "rol_personas"
   add_foreign_key "personas", "tipo_personas"
   add_foreign_key "rol_personas", "tipo_personas"

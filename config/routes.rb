@@ -24,11 +24,21 @@ Rails.application.routes.draw do
     resources :tipo_personas, :rol_personas
   end
   resources :caracteristica_tipo_vehiculos
+  
   resources :tipo_vehiculos do
     resources :caracteristica_tipo_vehiculos, :tipo_datos
   end
+  
+  resources :modelo_vehiculos do
+    resources :tipo_vehiculos
+  end
+  
+  resources :marca_vehiculos do
+    resources :modelo_vehiculos, :tipo_vehiculos
+  end
 
   resources :caracteristica_forma_contactos
+  
   resources :forma_contactos do
     resources :caracteristica_forma_contactos, :tipo_datos
   end
