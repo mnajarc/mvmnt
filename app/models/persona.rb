@@ -14,7 +14,7 @@ class Persona < ActiveRecord::Base
   #serialize :rol_caracteres, Hash
   
   validate :valida_caracteres
-            
+
   def valida_caracteres
     tipo_persona.caracter_tipo_personas.each do |campo|
       if campo.requerido? && tipo_caracteres[campo.caracteristica].blank?
