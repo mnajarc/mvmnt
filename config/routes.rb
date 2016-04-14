@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :usuarios
   resources :tipo_datos
+  resources :estado_operativos
   resources :paginas
   resources :localidads
   resources :estados

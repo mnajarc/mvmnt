@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  clave_status: MyString
+  status: MyString
+
+two:
+  clave_status: MyString
+  status: MyString

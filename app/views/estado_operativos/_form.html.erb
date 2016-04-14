@@ -1,0 +1,5 @@
+<%= simple_form_for(@estado_operativo) do |f| %>
+    <%= f.input :clave_status, :input_html => {:maxlength => 2,:style=> 'width: 60px'} %>
+    <%= f.input :status %>
+  	<%= f.button :submit %>
+<% end %>
