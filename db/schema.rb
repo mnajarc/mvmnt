@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160412155622) do
+ActiveRecord::Schema.define(version: 20160413175832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,10 +22,12 @@ ActiveRecord::Schema.define(version: 20160412155622) do
     t.boolean  "requerido"
     t.integer  "rol_persona_id"
     t.integer  "tipo_dato_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.decimal  "orden",                     precision: 5, scale: 2
   end
 
+  add_index "caracter_rol_personas", ["rol_persona_id", "orden"], name: "index_caracter_rol_personas_on_rol_persona_id_and_orden", unique: true, using: :btree
   add_index "caracter_rol_personas", ["rol_persona_id"], name: "index_caracter_rol_personas_on_rol_persona_id", using: :btree
   add_index "caracter_rol_personas", ["tipo_dato_id"], name: "index_caracter_rol_personas_on_tipo_dato_id", using: :btree
 
@@ -34,11 +36,13 @@ ActiveRecord::Schema.define(version: 20160412155622) do
     t.boolean  "requerido"
     t.integer  "tipo_dato_id"
     t.integer  "tipo_persona_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.decimal  "orden",                      precision: 5, scale: 2
   end
 
   add_index "caracter_tipo_personas", ["tipo_dato_id"], name: "index_caracter_tipo_personas_on_tipo_dato_id", using: :btree
+  add_index "caracter_tipo_personas", ["tipo_persona_id", "orden"], name: "index_caracter_tipo_personas_on_tipo_persona_id_and_orden", unique: true, using: :btree
   add_index "caracter_tipo_personas", ["tipo_persona_id"], name: "index_caracter_tipo_personas_on_tipo_persona_id", using: :btree
 
   create_table "caracteristica_forma_contactos", force: :cascade do |t|
@@ -46,10 +50,12 @@ ActiveRecord::Schema.define(version: 20160412155622) do
     t.boolean  "requerido"
     t.integer  "tipo_dato_id"
     t.integer  "forma_contacto_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+    t.decimal  "orden",                        precision: 5, scale: 2
   end
 
+  add_index "caracteristica_forma_contactos", ["forma_contacto_id", "orden"], name: "formacontacto_orden_idx", unique: true, using: :btree
   add_index "caracteristica_forma_contactos", ["forma_contacto_id"], name: "index_caracteristica_forma_contactos_on_forma_contacto_id", using: :btree
   add_index "caracteristica_forma_contactos", ["tipo_dato_id"], name: "index_caracteristica_forma_contactos_on_tipo_dato_id", using: :btree
 
@@ -58,11 +64,13 @@ ActiveRecord::Schema.define(version: 20160412155622) do
     t.boolean  "requerido"
     t.integer  "tipo_dato_id"
     t.integer  "tipo_vehiculo_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+    t.decimal  "orden",                       precision: 5, scale: 2
   end
 
   add_index "caracteristica_tipo_vehiculos", ["tipo_dato_id"], name: "index_caracteristica_tipo_vehiculos_on_tipo_dato_id", using: :btree
+  add_index "caracteristica_tipo_vehiculos", ["tipo_vehiculo_id", "orden"], name: "tipovehiculo_orden_idx", unique: true, using: :btree
   add_index "caracteristica_tipo_vehiculos", ["tipo_vehiculo_id"], name: "index_caracteristica_tipo_vehiculos_on_tipo_vehiculo_id", using: :btree
 
   create_table "estados", force: :cascade do |t|

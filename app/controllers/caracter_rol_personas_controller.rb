@@ -74,6 +74,6 @@ class CaracterRolPersonasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def caracter_rol_persona_params
-      params.require(:caracter_rol_persona).permit(:caracteristica, :requerido, :rol_persona_id, :tipo_dato_id)
+      params.require(:caracter_rol_persona).permit(:caracteristica, :requerido, :rol_persona_id, :tipo_dato_id, :orden)
     end
 end

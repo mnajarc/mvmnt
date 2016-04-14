@@ -5,7 +5,7 @@ class CaracterTipoPersonasController < ApplicationController
   # GET /caracter_tipo_personas
   # GET /caracter_tipo_personas.json
   def index
-    @caracter_tipo_personas = CaracterTipoPersona.all
+    @caracter_tipo_personas = CaracterTipoPersona.all.order(:orden)
   end
 
   # GET /caracter_tipo_personas/1
@@ -70,11 +70,11 @@ class CaracterTipoPersonasController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_caracter_tipo_persona
-      @caracter_tipo_persona = CaracterTipoPersona.find(params[:id])
+      @caracter_tipo_persona = CaracterTipoPersona.find(params[:id]).order(:orden)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def caracter_tipo_persona_params
-      params.require(:caracter_tipo_persona).permit(:caracteristica, :requerido, :tipo_dato_id, :tipo_persona_id)
+      params.require(:caracter_tipo_persona).permit(:caracteristica, :requerido, :tipo_dato_id, :tipo_persona_id, :orden)
     end
 end

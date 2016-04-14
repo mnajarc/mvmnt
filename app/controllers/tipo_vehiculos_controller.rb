@@ -72,8 +72,7 @@ class TipoVehiculosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tipo_vehiculo_params
-      #params.require(:tipo_vehiculo).permit(:tipo_vehiculo, caracter_tipo_vehiculos_attributes: [:id, :caracteristica, :requerido, :tipo_dato_id, :tipo_vehiculo_id, :_destroy])
-      params.require(:tipo_vehiculo).permit(:clave_tipo_vehiculo, :tipo_vehiculo, caracteristica_tipo_vehiculos_attributes: [:id, :caracteristica, :requerido, :tipo_dato_id, :tipo_vehiculo_id, :_destroy] )
+      params.require(:tipo_vehiculo).permit(:clave_tipo_vehiculo, :tipo_vehiculo, caracteristica_tipo_vehiculos_attributes: [:id, :caracteristica, :requerido, :tipo_dato_id, :tipo_vehiculo_id, :orden, :_destroy] )
     end
 
 end

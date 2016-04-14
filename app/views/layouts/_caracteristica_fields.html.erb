@@ -4,6 +4,8 @@
     <%= f.collection_select(:tipo_dato_id, @tipo_datos, :id, :tipo_dato, {:prompt => 'Tipo de Dato'}) %>
     <%= f.label :requerido %>
     <%= f.check_box :requerido %>
+    <%= f.label :orden %>
+    <%= f.number_field :orden, min: 0, max: 99 %>
   	<%= f.hidden_field :_destroy %>
-    <%= link_to "Elimina caracteristica", "#", class: 'remove_fields' %>
-</fieldset>
+    <%= link_to "Elimina característica", "#", class: 'remove_fields' %>
+</fieldset> 

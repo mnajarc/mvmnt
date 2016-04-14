@@ -75,7 +75,7 @@ before_filter :authenticate_usuario!
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def caracteristica_forma_contacto_params
-      params.require(:caracteristica_forma_contacto).permit(:caracteristica, :requerido, :tipo_dato_id, :forma_contacto_id)
+      params.require(:caracteristica_forma_contacto).permit(:caracteristica, :requerido, :tipo_dato_id, :forma_contacto_id, :orden)
     end
 
 end

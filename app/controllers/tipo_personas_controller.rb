@@ -1,7 +1,7 @@
 class TipoPersonasController < ApplicationController
   before_filter :authenticate_usuario!
   before_action :set_tipo_persona, only: [:show, :edit, :update, :destroy]
-  before_action :set_caracter_tipo_personas, only: [:show]
+  before_action :set_caracter_tipo_personas, only: [:show, :edit, :update]
   # GET /tipo_personas
   # GET /tipo_personas.json
   def index
@@ -70,11 +70,11 @@ class TipoPersonasController < ApplicationController
       @tipo_persona = TipoPersona.find(params[:id])
     end
     def set_caracter_tipo_personas
-      @caracter_tipo_personas=CaracterTipoPersona.where(tipo_persona_id: @tipo_persona.id)
+      @caracter_tipo_personas=CaracterTipoPersona.where(tipo_persona_id: @tipo_persona.id).order(:orden)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tipo_persona_params
-      params.require(:tipo_persona).permit(:tipo_persona, caracter_tipo_personas_attributes: [:id, :caracteristica, :requerido, :tipo_dato_id, :tipo_persona_id, :_destroy])
+      params.require(:tipo_persona).permit(:tipo_persona, caracter_tipo_personas_attributes: [:id, :caracteristica, :requerido, :tipo_dato_id, :tipo_persona_id, :orden, :_destroy])
     end
 end

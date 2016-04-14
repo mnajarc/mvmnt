@@ -76,10 +76,10 @@ class RolPersonasController < ApplicationController
     end
 
     def set_caracter_rol_personas
-      @caracter_rol_personas=CaracterRolPersona.where(rol_persona_id: @rol_persona.id)
+      @caracter_rol_personas=CaracterRolPersona.where(rol_persona_id: @rol_persona.id).order(:orden)
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def rol_persona_params
-      params.require(:rol_persona).permit(:rol_persona, :tipo_persona_id, caracter_rol_personas_attributes: [:id, :caracteristica, :requerido, :tipo_dato_id, :rol_persona_id, :_destroy])
+      params.require(:rol_persona).permit(:rol_persona, :tipo_persona_id, caracter_rol_personas_attributes: [:id, :caracteristica, :requerido, :tipo_dato_id, :rol_persona_id, :orden, :_destroy])
     end
 end
