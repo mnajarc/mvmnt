@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160413175832) do
+ActiveRecord::Schema.define(version: 20160414220635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,15 @@ ActiveRecord::Schema.define(version: 20160413175832) do
   add_index "caracteristica_tipo_vehiculos", ["tipo_dato_id"], name: "index_caracteristica_tipo_vehiculos_on_tipo_dato_id", using: :btree
   add_index "caracteristica_tipo_vehiculos", ["tipo_vehiculo_id", "orden"], name: "tipovehiculo_orden_idx", unique: true, using: :btree
   add_index "caracteristica_tipo_vehiculos", ["tipo_vehiculo_id"], name: "index_caracteristica_tipo_vehiculos_on_tipo_vehiculo_id", using: :btree
+
+  create_table "estado_operativos", force: :cascade do |t|
+    t.string   "clave_status", limit: 2
+    t.string   "status"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "estado_operativos", ["clave_status"], name: "index_estado_operativos_on_clave_status", unique: true, using: :btree
 
   create_table "estados", force: :cascade do |t|
     t.string   "nombre_estado"
