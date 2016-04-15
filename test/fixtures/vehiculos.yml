@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  serie: MyString
+  placas: MyString
+  caracteristicas: 
+  persona_id: 
+  tipo_vehiculo_id: 
+  marca_vehiculo_id: 
+  modelo_vehiculo_id: 
+  estado_operativo_id: 
+
+two:
+  serie: MyString
+  placas: MyString
+  caracteristicas: 
+  persona_id: 
+  tipo_vehiculo_id: 
+  marca_vehiculo_id: 
+  modelo_vehiculo_id: 
+  estado_operativo_id: 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160414220635) do
+ActiveRecord::Schema.define(version: 20160415003747) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -227,6 +227,26 @@ ActiveRecord::Schema.define(version: 20160414220635) do
   add_index "usuarios", ["email"], name: "index_usuarios_on_email", unique: true, using: :btree
   add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true, using: :btree
 
+  create_table "vehiculos", force: :cascade do |t|
+    t.string   "serie"
+    t.string   "placas",              limit: 12
+    t.hstore   "caracteristicas"
+    t.integer  "persona_id"
+    t.integer  "tipo_vehiculo_id"
+    t.integer  "marca_vehiculo_id"
+    t.integer  "modelo_vehiculo_id"
+    t.integer  "estado_operativo_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "vehiculos", ["caracteristicas"], name: "vehiculos_caracteristicas", using: :gin
+  add_index "vehiculos", ["estado_operativo_id"], name: "index_vehiculos_on_estado_operativo_id", using: :btree
+  add_index "vehiculos", ["marca_vehiculo_id"], name: "index_vehiculos_on_marca_vehiculo_id", using: :btree
+  add_index "vehiculos", ["modelo_vehiculo_id"], name: "index_vehiculos_on_modelo_vehiculo_id", using: :btree
+  add_index "vehiculos", ["persona_id"], name: "index_vehiculos_on_persona_id", using: :btree
+  add_index "vehiculos", ["tipo_vehiculo_id"], name: "index_vehiculos_on_tipo_vehiculo_id", using: :btree
+
   create_table "viajes", force: :cascade do |t|
     t.string   "origen"
     t.string   "destino"
@@ -253,4 +273,9 @@ ActiveRecord::Schema.define(version: 20160414220635) do
   add_foreign_key "personas", "rol_personas"
   add_foreign_key "personas", "tipo_personas"
   add_foreign_key "rol_personas", "tipo_personas"
+  add_foreign_key "vehiculos", "estado_operativos"
+  add_foreign_key "vehiculos", "marca_vehiculos"
+  add_foreign_key "vehiculos", "modelo_vehiculos"
+  add_foreign_key "vehiculos", "personas"
+  add_foreign_key "vehiculos", "tipo_vehiculos"
 end
