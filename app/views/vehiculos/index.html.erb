@@ -1,0 +1,45 @@
+<%- model_class = Vehiculo -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+
+<%= form_tag(vehiculos_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Buscar" %>
+    <%= submit_tag "Buscar" %>
+<% end %>
+<% if not @vehiculos.present? %>
+  <p>No se encontraron elementos <%= params[:search] %>.</p>
+<% end %>
+<br />
+<%= form_tag new_vehiculo_path, method: :get do %>
+<strong>Tipo Vehiculo: </strong>
+    <%= select_tag :tipo_vehiculo_id, options_from_collection_for_select(@tipo_vehiculos, :id, :tipo_vehiculo) %></td>
+    <%= submit_tag "Nuevo Vehiculo", name: nil , class: "btn btn-primary" %>
+<% end %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:serie) %></th>
+      <th><%= model_class.human_attribute_name(:placas) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @vehiculos.each do |vehiculo| %>
+      <tr>
+        <td><%= link_to vehiculo.serie, vehiculo_path(vehiculo) %></td>
+        <td><%= vehiculo.placas %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_vehiculo_path(vehiculo), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      vehiculo_path(vehiculo),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

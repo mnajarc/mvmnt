@@ -43,6 +43,10 @@ Rails.application.routes.draw do
   resources :forma_contactos do
     resources :caracteristica_forma_contactos, :tipo_datos
   end
+  
+  resources :vehiculos do
+    resources :marca_vehiculos, :modelo_vehiculos, :tipo_vehiculos, :tipo_datos, :personas
+  end
 
   resources :viajes
 

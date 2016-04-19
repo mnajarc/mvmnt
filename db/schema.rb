@@ -230,12 +230,12 @@ ActiveRecord::Schema.define(version: 20160415003747) do
   create_table "vehiculos", force: :cascade do |t|
     t.string   "serie"
     t.string   "placas",              limit: 12
-    t.hstore   "caracteristicas"
     t.integer  "persona_id"
     t.integer  "tipo_vehiculo_id"
     t.integer  "marca_vehiculo_id"
     t.integer  "modelo_vehiculo_id"
     t.integer  "estado_operativo_id"
+    t.hstore   "caracteristicas"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
   end

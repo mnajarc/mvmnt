@@ -1,0 +1,38 @@
+<%= simple_form_for(@vehiculo) do |f| %>
+    <%= f.hidden_field :tipo_vehiculo_id %>
+    <%  $tipo_vehiculo_id=@vehiculo.tipo_vehiculo_id %> 
+
+
+   <%= f.collection_select( :marca_vehiculo_id, @marca_vehiculos, :id, :marca_vehiculo) %>
+   <%= f.grouped_collection_select(:modelo_vehiculo_id, @marca_vehiculos, :modelo_vehiculos_ltvi, :marca_vehiculo, :id, :modelo_vehiculo) %>
+
+    
+
+    <br />
+    
+    <%= f.input :serie %>
+    <%= f.input :placas %>
+    
+    <%= f.collection_select( :estado_operativo_id, EstadoOperativo.all, :id, :status) %>
+    <%= f.collection_select( :persona_id, Persona.all, :id, :nombre_persona) %>
+
+    <h4>Caracteristicas :  <%= @vehiculo.tipo_vehiculo.tipo_vehiculo %></h4>
+    <table class="table table-striped">
+        <tbody>
+            <%= f.simple_fields_for :caracteristicas, OpenStruct.new(@vehiculo.caracteristicas) do |builder| %>
+                <% @vehiculo.tipo_vehiculo.caracteristica_tipo_vehiculos.each do |field| %>
+                    <% tipodato=TipoDato.find(field.tipo_dato_id) %>
+                    <tr>
+                        <%= render "layouts/fields/#{tipodato.dataprot}", field: field, f: builder %>
+                    </tr>
+                <% end %>
+
+            
+            <% end %>
+        </tbody>
+    </table>
+
+    <%= f.button :submit %>
+
+<% end %>
+

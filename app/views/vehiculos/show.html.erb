@@ -1,0 +1,31 @@
+<%- model_class = Vehiculo -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+
+    <dt><strong><%= model_class.human_attribute_name("Tipo vehiculo") %>:</strong></dt>
+    <dd><%= @vehiculo.tipo_vehiculo.tipo_vehiculo %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:serie) %>:</strong></dt>
+    <dd><%= @vehiculo.serie %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:placas) %>:</strong></dt>
+    <dd><%= @vehiculo.placas %></dd>
+    <%= fields_for :caracteristicas, OpenStruct.new(@vehiculo.caracteristicas) do |builder| %>
+        <% @vehiculo.tipo_vehiculo.caracteristica_tipo_vehiculos.each do |field| %>
+            <% tipodato=TipoDato.find(field.tipo_dato_id) %>
+            <%= render "layouts/disp_fields/#{tipodato.dataprot}", field: field, f: builder %>
+        <% end %>
+    <% end %>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              vehiculos_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_vehiculo_path(@vehiculo), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              vehiculo_path(@vehiculo),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+

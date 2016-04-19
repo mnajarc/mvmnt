@@ -2,7 +2,7 @@ class Persona < ActiveRecord::Base
   belongs_to :tipo_persona
   belongs_to :rol_persona
   has_many :caracter_tipo_personas, -> { order(orden)}
-  has_many :caracter_rol_persona, -> { order(orden)}
+  has_many :caracter_rol_personas, -> { order(orden)}
   validates :nombre_persona, presence: true
   validates :tipo_persona_id, presence: true
   validates :rol_persona_id, presence: true
