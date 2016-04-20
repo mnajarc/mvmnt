@@ -11,6 +11,8 @@
     <dd><%= @vehiculo.serie %></dd>
     <dt><strong><%= model_class.human_attribute_name(:placas) %>:</strong></dt>
     <dd><%= @vehiculo.placas %></dd>
+    <dt><strong><%= model_class.human_attribute_name(":Año") %>:</strong></dt>
+    <dd><%= @vehiculo.ano_vehiculo %></dd>
     <%= fields_for :caracteristicas, OpenStruct.new(@vehiculo.caracteristicas) do |builder| %>
         <% @vehiculo.tipo_vehiculo.caracteristica_tipo_vehiculos.each do |field| %>
             <% tipodato=TipoDato.find(field.tipo_dato_id) %>

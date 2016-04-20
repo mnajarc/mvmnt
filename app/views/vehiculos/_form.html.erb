@@ -12,6 +12,9 @@
     
     <%= f.input :serie %>
     <%= f.input :placas %>
+    <%= f.input :ano_vehiculo, label: "Año Vehiculo" %>
+    
+    
     
     <%= f.collection_select( :estado_operativo_id, EstadoOperativo.all, :id, :status) %>
     <%= f.collection_select( :persona_id, Persona.all, :id, :nombre_persona) %>
