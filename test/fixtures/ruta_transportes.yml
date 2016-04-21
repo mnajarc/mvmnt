@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  clave_ruta: MyString
+  sentido: MyString
+  punto_a: 
+  punto_b: 
+
+two:
+  clave_ruta: MyString
+  sentido: MyString
+  punto_a: 
+  punto_b: 

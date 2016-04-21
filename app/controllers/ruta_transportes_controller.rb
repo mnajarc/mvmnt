@@ -1,0 +1,2 @@
+class RutaTransportesController < ApplicationController
+end
