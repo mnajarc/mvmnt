@@ -1,9 +1,36 @@
+<%- model_class = Nacion -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => @nacion.nombre %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:clave_estado) %></th>
+      <th><%= model_class.human_attribute_name(:nombre_estado) %></th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <% @nacion.estados.each do |estado| %>
+      <tr>
+          
+        <td><%= estado.clave_estado %></td>
+        <td><%= link_to estado.nombre_estado, estado_path(estado) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nombre:</strong>
-  <%= @nacion.nombre %>
-</p>
+       <%= link_to t('.back', :default => t("helpers.links.back")),
+              nacions_path, :class => 'btn btn-default'  %>
+       <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_nacion_path(@nacion), :class => 'btn btn-default' %>
+       <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              nacion_path(@nacion),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
 
-<%= link_to 'Edit', edit_nacion_path(@nacion) %> |
-<%= link_to 'Back', nacions_path %>

@@ -17,6 +17,9 @@
             <%= render "layouts/disp_fields/#{tipodato.dataprot}", field: field, f: builder %>
         <% end %>
     <% end %>
+    
+    <dt><strong><%= model_class.human_attribute_name("Rol Persona") %>:</strong></dt>
+    <dd><%= @persona.rol_persona.rol_persona %></dd>
     <%= fields_for :rol_caracteres, OpenStruct.new(@persona.rol_caracteres) do |builder| %>
         <% @persona.rol_persona.caracter_rol_personas.each do |field| %>
             <% tipodato=TipoDato.find(field.tipo_dato_id) %>
@@ -24,8 +27,6 @@
         <% end %>
     <% end %>
 
-    <dt><strong><%= model_class.human_attribute_name("Rol Persona") %>:</strong></dt>
-    <dd><%= @persona.rol_persona.rol_persona %></dd>
   
 </dl>
 
