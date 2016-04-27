@@ -47,6 +47,10 @@ Rails.application.routes.draw do
   resources :vehiculos do
     resources :marca_vehiculos, :modelo_vehiculos, :tipo_vehiculos, :tipo_datos, :personas
   end
+  
+  resources :ruta_transportes do
+    resources :localidads
+  end
 
   resources :viajes
 

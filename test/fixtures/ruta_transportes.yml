@@ -3,11 +3,9 @@
 one:
   clave_ruta: MyString
   sentido: MyString
-  punto_a: 
-  punto_b: 
+  localidad_id: 
 
 two:
   clave_ruta: MyString
   sentido: MyString
-  punto_a: 
-  punto_b: 
+  localidad_id: 

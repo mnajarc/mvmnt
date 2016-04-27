@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420005859) do
+ActiveRecord::Schema.define(version: 20160423022109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -182,6 +182,27 @@ ActiveRecord::Schema.define(version: 20160420005859) do
 
   add_index "rol_personas", ["rol_persona"], name: "index_rol_personas_on_rol_persona", unique: true, using: :btree
   add_index "rol_personas", ["tipo_persona_id"], name: "index_rol_personas_on_tipo_persona_id", using: :btree
+
+  create_table "ruta_transportes", force: :cascade do |t|
+    t.string   "clave_ruta",  limit: 10
+    t.string   "nombre_ruta", limit: 50
+    t.decimal  "kilometraje",            precision: 8, scale: 3
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.integer  "punto_a_id"
+    t.integer  "punto_b_id"
+  end
+
+  create_table "t1", id: false, force: :cascade do |t|
+    t.integer "id"
+    t.string  "creatime", limit: 15
+  end
+
+  create_table "t2", id: false, force: :cascade do |t|
+    t.integer "id"
+    t.integer "seq"
+    t.string  "creatime", limit: 15
+  end
 
   create_table "tipo_datos", force: :cascade do |t|
     t.string   "tipo_dato"
