@@ -1,0 +1,2 @@
+module AlmacenTiposHelper
+end

@@ -5,18 +5,37 @@ Rails.application.routes.draw do
   resources :paginas
   resources :localidads
   resources :estados
+  resources :caracteristica_tipo_productos
+  resources :caracteristica_tipo_vehiculos
+  resources :caracter_rol_personas
+  resources :caracter_tipo_personas
+  resources :caracteristica_forma_contactos
+  resources :viajes
+  resources :modelo_productos
+  
+  resources :tipo_productos do
+    resources :caracteristica_tipo_productos, :tipo_datos 
+  end
+  
+  resources :marca_productos do
+    resources :modelo_productos
+  end
+  
+  resources :productos do
+    resources :marca_productos, :modelo_productos, :tipo_productos, :caracteristica_tipo_productos
+  end
+
+
   resources :nacions do
     resources :estados do
       resources :localidads
     end
   end
   
-  resources :caracter_rol_personas
   resources :rol_personas do
     resources :caracter_rol_personas, :tipo_datos
   end
   
-  resources :caracter_tipo_personas
   resources :tipo_personas do
     resources :caracter_tipo_personas, :tipo_datos
   end
@@ -24,7 +43,6 @@ Rails.application.routes.draw do
   resources :personas do
     resources :tipo_personas, :rol_personas
   end
-  resources :caracteristica_tipo_vehiculos
   
   resources :tipo_vehiculos do
     resources :caracteristica_tipo_vehiculos, :tipo_datos
@@ -38,7 +56,6 @@ Rails.application.routes.draw do
     resources :modelo_vehiculos, :tipo_vehiculos
   end
 
-  resources :caracteristica_forma_contactos
   
   resources :forma_contactos do
     resources :caracteristica_forma_contactos, :tipo_datos
@@ -52,7 +69,6 @@ Rails.application.routes.draw do
     resources :localidads
   end
 
-  resources :viajes
 
   get 'bienvenida/index'
 

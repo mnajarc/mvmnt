@@ -6,10 +6,7 @@ class MarcaVehiculo < ActiveRecord::Base
   accepts_nested_attributes_for :modelo_vehiculos, allow_destroy: true
   
 private
-  
   def modelo_vehiculos_ltvi
     ModeloVehiculo.where("tipo_vehiculo_id = ? and marca_vehiculo_id =?",$tipo_vehiculo_id, self.id)
   end
-
-
 end

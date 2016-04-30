@@ -1,0 +1,2 @@
+class CaracteristicaTipoProductosController < ApplicationController
+end

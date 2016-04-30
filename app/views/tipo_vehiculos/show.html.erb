@@ -9,7 +9,26 @@
   <dt><strong><%= model_class.human_attribute_name(:tipo_vehiculo) %>:</strong></dt>
   <dd><%= @tipo_vehiculo.tipo_vehiculo %></dd>
 </dl>
+<table>
+  <thead>
+    <tr>
+      <th>Caracteristica</th>
+      <th>Requerido</th>
+      <th>Tipo dato</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @caracteristica_tipo_vehiculos.each do |caracteristica_tipo_vehiculo| %>
+      <tr>
+        <td><%= caracteristica_tipo_vehiculo.caracteristica %></td>
+        <td><%= caracteristica_tipo_vehiculo.requerido? ? 'S' : 'N'%></td>
+        <td><%= caracteristica_tipo_vehiculo.tipo_dato.tipo_dato %></td>
 
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br />
 <%= link_to t('.back', :default => t("helpers.links.back")),
               tipo_vehiculos_path, :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),

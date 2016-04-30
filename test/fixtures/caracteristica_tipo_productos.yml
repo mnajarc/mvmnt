@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  caracteristica: MyString
+  requerido: false
+  orden: 9.99
+  tipo_dato_id: 
+  tipo_producto_id: 
+
+two:
+  caracteristica: MyString
+  requerido: false
+  orden: 9.99
+  tipo_dato_id: 
+  tipo_producto_id: 

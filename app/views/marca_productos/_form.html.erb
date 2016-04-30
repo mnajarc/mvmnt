@@ -1,0 +1,13 @@
+<%= simple_form_for(@marca_producto) do |f| %>
+    <%= f.label :clave_marca %>:
+    <%= f.input_field :clave_marca, :input_html => {:maxlength => 12,:style=> 'width: 220px'} %>
+    <%= f.label :nombre_marca %>:
+    <%= f.input_field :nombre_marca %><br />
+    <%= f.simple_fields_for :modelo_productos do |builder| %>
+  		<%= render 'modelo_producto_fields', f: builder %>
+  	<% end %> 
+
+  	<%= link_to_add_field "Agrega Modelo", f, :modelo_productos %>
+  	<br />
+  	<%= f.button :submit %>
+<% end %>

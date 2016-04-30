@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  clave_modelo: MyString
+  nombre_modelo: MyString
+  marca_producto_id: 
+
+two:
+  clave_modelo: MyString
+  nombre_modelo: MyString
+  marca_producto_id: 

@@ -1,0 +1,2 @@
+class AlmacenTiposController < ApplicationController
+end

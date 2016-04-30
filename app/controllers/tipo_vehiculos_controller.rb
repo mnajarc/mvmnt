@@ -1,6 +1,8 @@
 class TipoVehiculosController < ApplicationController
   before_filter :authenticate_usuario!
   before_action :set_tipo_vehiculo, only: [:show, :edit, :update, :destroy]
+    before_action :set_caracteristica_tipo_vehiculos, only: [:show, :edit, :update]
+
 
   # GET /tipo_vehiculos
   # GET /tipo_vehiculos.json
@@ -68,6 +70,10 @@ class TipoVehiculosController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_tipo_vehiculo
       @tipo_vehiculo = TipoVehiculo.find(params[:id])
+    end
+    def set_caracteristica_tipo_vehiculos
+      @caracteristica_tipo_vehiculos=CaracteristicaTipoVehiculo.where(tipo_vehiculo_id: @tipo_vehiculo.id).order(:orden)
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
