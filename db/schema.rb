@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160423022109) do
+ActiveRecord::Schema.define(version: 20160430005946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,20 @@ ActiveRecord::Schema.define(version: 20160423022109) do
   add_index "caracteristica_forma_contactos", ["forma_contacto_id", "orden"], name: "formacontacto_orden_idx", unique: true, using: :btree
   add_index "caracteristica_forma_contactos", ["forma_contacto_id"], name: "index_caracteristica_forma_contactos_on_forma_contacto_id", using: :btree
   add_index "caracteristica_forma_contactos", ["tipo_dato_id"], name: "index_caracteristica_forma_contactos_on_tipo_dato_id", using: :btree
+
+  create_table "caracteristica_tipo_productos", force: :cascade do |t|
+    t.string   "caracteristica",   limit: 48
+    t.boolean  "requerido"
+    t.decimal  "orden",                       precision: 5, scale: 2
+    t.integer  "tipo_dato_id"
+    t.integer  "tipo_producto_id"
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+  end
+
+  add_index "caracteristica_tipo_productos", ["tipo_dato_id"], name: "index_caracteristica_tipo_productos_on_tipo_dato_id", using: :btree
+  add_index "caracteristica_tipo_productos", ["tipo_producto_id", "orden"], name: "tipoproducto_orden_idx", unique: true, using: :btree
+  add_index "caracteristica_tipo_productos", ["tipo_producto_id"], name: "index_caracteristica_tipo_productos_on_tipo_producto_id", using: :btree
 
   create_table "caracteristica_tipo_vehiculos", force: :cascade do |t|
     t.string   "caracteristica",   limit: 48
@@ -114,6 +128,15 @@ ActiveRecord::Schema.define(version: 20160423022109) do
   add_index "localidads", ["estado_id", "clave_localidad"], name: "index_localidads_on_estado_id_and_clave_localidad", unique: true, using: :btree
   add_index "localidads", ["estado_id"], name: "index_localidads_on_estado_id", using: :btree
 
+  create_table "marca_productos", force: :cascade do |t|
+    t.string   "clave_marca",  limit: 20
+    t.string   "nombre_marca", limit: 50
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "marca_productos", ["clave_marca"], name: "index_marca_productos_on_clave_marca", unique: true, using: :btree
+
   create_table "marca_vehiculos", force: :cascade do |t|
     t.string   "clave_marca_vehiculo", limit: 20
     t.string   "marca_vehiculo"
@@ -122,6 +145,17 @@ ActiveRecord::Schema.define(version: 20160423022109) do
   end
 
   add_index "marca_vehiculos", ["clave_marca_vehiculo"], name: "index_marca_vehiculos_on_clave_marca_vehiculo", unique: true, using: :btree
+
+  create_table "modelo_productos", force: :cascade do |t|
+    t.string   "clave_modelo",      limit: 20
+    t.string   "nombre_modelo",     limit: 50
+    t.integer  "marca_producto_id"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "modelo_productos", ["clave_modelo"], name: "index_modelo_productos_on_clave_modelo", unique: true, using: :btree
+  add_index "modelo_productos", ["marca_producto_id"], name: "index_modelo_productos_on_marca_producto_id", using: :btree
 
   create_table "modelo_vehiculos", force: :cascade do |t|
     t.string   "clave_modelo_vehiculo", limit: 20
@@ -173,6 +207,24 @@ ActiveRecord::Schema.define(version: 20160423022109) do
   add_index "personas", ["tipo_caracteres"], name: "index_personas_on_tipo_caracteres", using: :gin
   add_index "personas", ["tipo_persona_id"], name: "index_personas_on_tipo_persona_id", using: :btree
 
+  create_table "productos", force: :cascade do |t|
+    t.string   "sku",                limit: 20
+    t.string   "nombre_producto",    limit: 50
+    t.decimal  "precio"
+    t.hstore   "caracteristicas"
+    t.integer  "marca_producto_id"
+    t.integer  "modelo_producto_id"
+    t.integer  "tipo_producto_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "productos", ["caracteristicas"], name: "productos_caracteristicas", using: :gin
+  add_index "productos", ["marca_producto_id"], name: "index_productos_on_marca_producto_id", using: :btree
+  add_index "productos", ["modelo_producto_id"], name: "index_productos_on_modelo_producto_id", using: :btree
+  add_index "productos", ["sku"], name: "index_productos_on_sku", unique: true, using: :btree
+  add_index "productos", ["tipo_producto_id"], name: "index_productos_on_tipo_producto_id", using: :btree
+
   create_table "rol_personas", force: :cascade do |t|
     t.string   "rol_persona",     limit: 32
     t.datetime "created_at",                 null: false
@@ -220,6 +272,15 @@ ActiveRecord::Schema.define(version: 20160423022109) do
   end
 
   add_index "tipo_personas", ["tipo_persona"], name: "index_tipo_personas_on_tipo_persona", unique: true, using: :btree
+
+  create_table "tipo_productos", force: :cascade do |t|
+    t.string   "clave_tipo_producto",  limit: 20
+    t.string   "nombre_tipo_producto", limit: 50
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "tipo_productos", ["clave_tipo_producto"], name: "index_tipo_productos_on_clave_tipo_producto", unique: true, using: :btree
 
   create_table "tipo_vehiculos", force: :cascade do |t|
     t.string   "clave_tipo_vehiculo", limit: 6
@@ -286,14 +347,20 @@ ActiveRecord::Schema.define(version: 20160423022109) do
   add_foreign_key "caracter_tipo_personas", "tipo_personas"
   add_foreign_key "caracteristica_forma_contactos", "forma_contactos"
   add_foreign_key "caracteristica_forma_contactos", "tipo_datos"
+  add_foreign_key "caracteristica_tipo_productos", "tipo_datos"
+  add_foreign_key "caracteristica_tipo_productos", "tipo_productos"
   add_foreign_key "caracteristica_tipo_vehiculos", "tipo_datos"
   add_foreign_key "caracteristica_tipo_vehiculos", "tipo_vehiculos"
   add_foreign_key "estados", "nacions"
   add_foreign_key "localidads", "estados"
+  add_foreign_key "modelo_productos", "marca_productos"
   add_foreign_key "modelo_vehiculos", "marca_vehiculos"
   add_foreign_key "modelo_vehiculos", "tipo_vehiculos"
   add_foreign_key "personas", "rol_personas"
   add_foreign_key "personas", "tipo_personas"
+  add_foreign_key "productos", "marca_productos"
+  add_foreign_key "productos", "modelo_productos"
+  add_foreign_key "productos", "tipo_productos"
   add_foreign_key "rol_personas", "tipo_personas"
   add_foreign_key "vehiculos", "estado_operativos"
   add_foreign_key "vehiculos", "marca_vehiculos"
