@@ -4,15 +4,15 @@
     <%= f.input :nombre_ruta %>
 <strong>Origen: </strong>
     <div id="pa">
-        País: <%= collection_select( :nacion, :nacion_id, @nacionsa, :id, :nombre, {:selected => @ruta_transporte.punto_a.estado.nacion.id}) %>
-        Estado: <%= grouped_collection_select(:estado, :estado_id, @nacionsa, :estados, :nombre, :id, :nombre_estado, {:selected => @ruta_transporte.punto_a.estado_id}) %>
+        País: <%= collection_select( :nacion, :nacion_id, @nacionsa, :id, :nombre, @ruta_transporte.punto_a_id? ? {:selected => @ruta_transporte.punto_a.estado.nacion.id}:{}) %>
+        Estado: <%= grouped_collection_select(:estado, :estado_id, @nacionsa, :estados, :nombre, :id, :nombre_estado, @ruta_transporte.punto_a_id? ? {:selected => @ruta_transporte.punto_a.estado_id}:{}) %>
         Localidad: <%= f.grouped_collection_select(:punto_a_id, @estadosa, :localidads, :nombre_estado, :id, :nombre_localidad) %>
     </div>
    <br />
    <strong>Destino: </strong>
     <div id="pb">
-        País: <%= collection_select( :nacion, :nacion_id, @nacionsb, :id, :nombre, {:selected => @ruta_transporte.punto_b.estado.nacion.id}) %>
-        Estado: <%= grouped_collection_select(:estado, :estado_id, @nacionsb, :estados, :nombre, :id, :nombre_estado, {:selected => @ruta_transporte.punto_b.estado_id}) %>
+        País: <%= collection_select( :nacion, :nacion_id, @nacionsb, :id, :nombre, @ruta_transporte.punto_b_id? ? {:selected => @ruta_transporte.punto_b.estado.nacion.id.present?}:{}) %>
+        Estado: <%= grouped_collection_select(:estado, :estado_id, @nacionsb, :estados, :nombre, :id, :nombre_estado, @ruta_transporte.punto_b_id? ? {:selected => @ruta_transporte.punto_b.estado_id}:{}) %>
         Localidad: <%= f.grouped_collection_select(:punto_b_id, @estadosb, :localidads, :nombre_estado, :id, :nombre_localidad) %>
     </div>
     <br />
