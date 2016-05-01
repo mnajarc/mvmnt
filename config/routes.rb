@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :caracteristica_forma_contactos
   resources :viajes
   resources :modelo_productos
+  resources :unidads
   
   resources :tipo_productos do
     resources :caracteristica_tipo_productos, :tipo_datos 
@@ -22,7 +23,7 @@ Rails.application.routes.draw do
   end
   
   resources :productos do
-    resources :marca_productos, :modelo_productos, :tipo_productos, :caracteristica_tipo_productos
+    resources :marca_productos, :modelo_productos, :tipo_productos, :caracteristica_tipo_productos, :unidads
   end
 
 
