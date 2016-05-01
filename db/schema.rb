@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160430005946) do
+ActiveRecord::Schema.define(version: 20160501033551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -217,6 +217,7 @@ ActiveRecord::Schema.define(version: 20160430005946) do
     t.integer  "tipo_producto_id"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+    t.integer  "unidad_id"
   end
 
   add_index "productos", ["caracteristicas"], name: "productos_caracteristicas", using: :gin
@@ -224,6 +225,7 @@ ActiveRecord::Schema.define(version: 20160430005946) do
   add_index "productos", ["modelo_producto_id"], name: "index_productos_on_modelo_producto_id", using: :btree
   add_index "productos", ["sku"], name: "index_productos_on_sku", unique: true, using: :btree
   add_index "productos", ["tipo_producto_id"], name: "index_productos_on_tipo_producto_id", using: :btree
+  add_index "productos", ["unidad_id"], name: "index_productos_on_unidad_id", using: :btree
 
   create_table "rol_personas", force: :cascade do |t|
     t.string   "rol_persona",     limit: 32
@@ -290,6 +292,15 @@ ActiveRecord::Schema.define(version: 20160430005946) do
   end
 
   add_index "tipo_vehiculos", ["clave_tipo_vehiculo"], name: "index_tipo_vehiculos_on_clave_tipo_vehiculo", unique: true, using: :btree
+
+  create_table "unidads", force: :cascade do |t|
+    t.string   "codigo",     limit: 10
+    t.string   "unidad"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "unidads", ["codigo"], name: "index_unidads_on_codigo", unique: true, using: :btree
 
   create_table "usuarios", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -361,6 +372,7 @@ ActiveRecord::Schema.define(version: 20160430005946) do
   add_foreign_key "productos", "marca_productos"
   add_foreign_key "productos", "modelo_productos"
   add_foreign_key "productos", "tipo_productos"
+  add_foreign_key "productos", "unidads"
   add_foreign_key "rol_personas", "tipo_personas"
   add_foreign_key "vehiculos", "estado_operativos"
   add_foreign_key "vehiculos", "marca_vehiculos"

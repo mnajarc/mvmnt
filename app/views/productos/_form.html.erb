@@ -1,0 +1,38 @@
+<%= simple_form_for(@producto) do |f| %>
+    <%= f.hidden_field :tipo_producto_id %>
+
+
+   <%= f.collection_select( :marca_producto_id, @marca_productos, :id, :nombre_marca) %>
+   <%= f.grouped_collection_select(:modelo_producto_id, @marca_productos, :modelo_productos, :nombre_marca, :id, :nombre_modelo) %>
+   <%= f.collection_select( :unidad_id, @unidads, :id, :unidad) %>
+
+
+    <br />
+    
+    <%= f.input :sku %>
+    <%= f.input :nombre_producto %>
+    <%= f.input :precio %>
+    
+    
+    
+
+    <h4>Caracteristicas :  <%= @producto.tipo_producto.nombre_tipo_producto %></h4>
+    <table class="table table-striped">
+        <tbody>
+            <%= f.simple_fields_for :caracteristicas, OpenStruct.new(@producto.caracteristicas) do |builder| %>
+                <% @producto.tipo_producto.caracteristica_tipo_productos.each do |field| %>
+                    <% tipodato=TipoDato.find(field.tipo_dato_id) %>
+                    <tr>
+                        <%= render "layouts/fields/#{tipodato.dataprot}", field: field, f: builder %>
+                    </tr>
+                <% end %>
+
+            
+            <% end %>
+        </tbody>
+    </table>
+
+    <%= f.button :submit %>
+
+<% end %>
+
