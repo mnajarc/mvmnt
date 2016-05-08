@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160501033551) do
+ActiveRecord::Schema.define(version: 20160507165727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,19 @@ ActiveRecord::Schema.define(version: 20160501033551) do
   add_index "caracteristica_forma_contactos", ["forma_contacto_id", "orden"], name: "formacontacto_orden_idx", unique: true, using: :btree
   add_index "caracteristica_forma_contactos", ["forma_contacto_id"], name: "index_caracteristica_forma_contactos_on_forma_contacto_id", using: :btree
   add_index "caracteristica_forma_contactos", ["tipo_dato_id"], name: "index_caracteristica_forma_contactos_on_tipo_dato_id", using: :btree
+
+  create_table "caracteristica_tipo_almacens", force: :cascade do |t|
+    t.string   "caracteristica",  limit: 48
+    t.boolean  "requerido"
+    t.decimal  "orden",                      precision: 5, scale: 2
+    t.integer  "tipo_dato_id"
+    t.integer  "tipo_almacen_id"
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+  end
+
+  add_index "caracteristica_tipo_almacens", ["tipo_almacen_id"], name: "index_caracteristica_tipo_almacens_on_tipo_almacen_id", using: :btree
+  add_index "caracteristica_tipo_almacens", ["tipo_dato_id"], name: "index_caracteristica_tipo_almacens_on_tipo_dato_id", using: :btree
 
   create_table "caracteristica_tipo_productos", force: :cascade do |t|
     t.string   "caracteristica",   limit: 48
@@ -258,6 +271,15 @@ ActiveRecord::Schema.define(version: 20160501033551) do
     t.string  "creatime", limit: 15
   end
 
+  create_table "tipo_almacens", force: :cascade do |t|
+    t.string   "clave_tipo_almacen",  limit: 20
+    t.string   "nombre_tipo_almacen", limit: 40
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "tipo_almacens", ["clave_tipo_almacen"], name: "index_tipo_almacens_on_clave_tipo_almacen", unique: true, using: :btree
+
   create_table "tipo_datos", force: :cascade do |t|
     t.string   "tipo_dato"
     t.string   "dataprot"
@@ -358,6 +380,8 @@ ActiveRecord::Schema.define(version: 20160501033551) do
   add_foreign_key "caracter_tipo_personas", "tipo_personas"
   add_foreign_key "caracteristica_forma_contactos", "forma_contactos"
   add_foreign_key "caracteristica_forma_contactos", "tipo_datos"
+  add_foreign_key "caracteristica_tipo_almacens", "tipo_almacens"
+  add_foreign_key "caracteristica_tipo_almacens", "tipo_datos"
   add_foreign_key "caracteristica_tipo_productos", "tipo_datos"
   add_foreign_key "caracteristica_tipo_productos", "tipo_productos"
   add_foreign_key "caracteristica_tipo_vehiculos", "tipo_datos"

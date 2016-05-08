@@ -1,0 +1,2 @@
+class AlmacensController < ApplicationController
+end
