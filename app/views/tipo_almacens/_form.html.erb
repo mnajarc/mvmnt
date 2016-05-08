@@ -1,0 +1,10 @@
+<%= simple_form_for(@tipo_almacen) do |f| %>
+    <%= f.input :clave_tipo_almacen, :input_html => {:maxlength =>6,:style=> 'width: 110px'} %><br>
+    <%= f.input :nombre_tipo_almacen %>
+    <%= f.simple_fields_for :caracteristica_tipo_almacens do |builder| %>
+  		<%= render 'layouts/caracteristica_fields', f: builder %>
+  	<% end %>
+  	<%= link_to_add_fields "Agrega caracteristica", f, :caracteristica_tipo_almacens %>
+    <br />
+  	<%= f.button :submit %>
+<% end %>

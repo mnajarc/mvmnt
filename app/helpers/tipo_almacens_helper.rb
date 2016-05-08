@@ -1,0 +1,2 @@
+module TipoAlmacensHelper
+end

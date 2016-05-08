@@ -13,7 +13,11 @@ Rails.application.routes.draw do
   resources :viajes
   resources :modelo_productos
   resources :unidads
+  resources :caracteristica_tipo_almacens
   
+  resources :tipo_almacens do
+    resources :caracteristica_tipo_almacens, :tipo_datos 
+  end
   resources :tipo_productos do
     resources :caracteristica_tipo_productos, :tipo_datos 
   end
